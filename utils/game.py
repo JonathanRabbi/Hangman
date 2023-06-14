@@ -41,7 +41,7 @@ class Hangman:
             self.turn_count+=1 
 
             if letter in self.word_to_find:
-                for i in range(len(self.word_to_find)):
+                for letter in range(len(self.word_to_find)):
                     if self.word_to_find ==letter:
                         self.correctly_guessed_letters = letter
 
