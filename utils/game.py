@@ -38,7 +38,7 @@ class Hangman:
                 print("Please enter 1 letter.")
                 continue 
             self.guesses.append(letter)
-            self.turn_count+=1 
+            self.turn_count+=1  #####
 
             if letter in self.word_to_find:
                 for letter in range(len(self.word_to_find)):
