@@ -51,12 +51,12 @@ class Hangman:
             if letter in self.word_to_find:
                 for i in range(len(self.word_to_find)):
                     if letter == self.word_to_find[i]:
-                         self.correctly_guessed_letters[i] = letter
+                        self.correctly_guessed_letters[i] = letter
                 
                 print("correct guess")
                 print(" ".join(self.correctly_guessed_letters))
                 print (f"attempts left: {self.lives}")
-
+                break
 
             else:
                 print("nope, guess again")
@@ -66,31 +66,15 @@ class Hangman:
                 print(" ".join(self.correctly_guessed_letters))
                 print((f"attempts left: {self.lives}"))
 
+                break
+
 
 
 
             #not done yet with the play method
         
-    def start_game(self):
-        """
-        The start game method will call the play method until the game has finished.
-        This will end by either the player guessing all the correct letters or running out of lives.
-        If the letters are correctly guessed within the 5 attempts/lives, the method will call the well_played-method.
-        Moreover, if all the lives have been used, this method will call the game_over-metod
+    
 
-        """
-        while True:
-            # this calls the play-method and its code, allowing the player to enter and validate the input and furtehr perform necessary actions from th start_game-method
-            self.play()
-            # if the player no longer has lives, then game_over-method is called
-            if self.lives ==0:
-                self.game_over()
-                break 
-
-            # if the player guessed all the letters correctly then well_played method is called
-            if self.word_to_find == self.correctly_guessed_letters:
-                self.well_played()
-                break 
 
 
     def game_over(self):
@@ -100,7 +84,27 @@ class Hangman:
         print(f"you found the word: {self.word_to_find} in {self.turn_count} and {self.error_count} errors!")
 
 
+    def start_game(self):
+        """
+        The start game method will call the play method until the game has finished.
+        This will end by either the player guessing all the correct letters or running out of lives.
+        If the letters are correctly guessed within the 5 attempts/lives, the method will call the well_played-method.
+        Moreover, if all the lives have been used, this method will call the game_over-metod
 
+        """
+        while self.lives!=0 and "_" in self.correctly_guessed_letters:
+            # this calls the play-method and its code, allowing the player to enter and validate the input and furtehr perform necessary actions from th start_game-method
+            self.play()
+
+            # if the player no longer has lives, then game_over-method is called
+            if self.lives ==0:
+                self.game_over()
+                
+
+            # if the player guessed all the letters correctly then well_played method is called
+            if "_" not in self.correctly_guessed_letters:
+                self.well_played()
+                
 
 
 
