@@ -1,13 +1,21 @@
+import random
+
 class Hangman:
+    
+    possible_words = ['becode']
+    
     def __init__(self):
+
+
+
         #the searched word
-        self.word_to_find = ["becode"]
-        
+        self.word_to_find = random.choice(Hangman.possible_words)
+
         #the amount of lives the player has
         self.lives = 5
 
         #list the letters that the player had correctly guessed
-        self.correctly_guessed_letters = ["_" for letter in self.word_to_find]
+        self.correctly_guessed_letters = ["_" for letter in range(len(self.word_to_find))]
         
         # this will list the letters that the player had wrong
         self.wrongly_guessed_letters = [] 
@@ -33,7 +41,7 @@ class Hangman:
         """
 
         while True:
-            letter = input("Guess a letter:")
+            letter = input("Guess a letter: ").lower()
             if not letter.isalpha() or len(letter)!=1:
                 print("Please enter 1 letter.")
                 continue 
@@ -42,13 +50,24 @@ class Hangman:
 
             if letter in self.word_to_find:
                 for i in range(len(self.word_to_find)):
-                    if self.word_to_find[i] ==letter:
-                        self.correctly_guessed_letters[i] = letter
+                    if letter == self.word_to_find[i]:
+                         self.correctly_guessed_letters[i] = letter
+                
+                print("correct guess")
+                print(" ".join(self.correctly_guessed_letters))
+                print (f"attempts left: {self.lives}")
+
 
             else:
+                print("nope, guess again")
                 self.wrongly_guessed_letters.append(letter) #adds the wrongly guessed letter to the list
                 self.error_count+=1 # starts counting how many errors you got
                 self.lives -=1
+                print(" ".join(self.correctly_guessed_letters))
+                print((f"attempts left: {self.lives}"))
+
+
+
 
             #not done yet with the play method
         
@@ -62,17 +81,17 @@ class Hangman:
         """
         while True:
             # this calls the play-method and its code, allowing the player to enter and validate the input and furtehr perform necessary actions from th start_game-method
-            self.play() 
-
+            self.play()
             # if the player no longer has lives, then game_over-method is called
             if self.lives ==0:
                 self.game_over()
                 break 
 
             # if the player guessed all the letters correctly then well_played method is called
-            if self.word_to_find ==self.correctly_guessed_letters:
+            if self.word_to_find == self.correctly_guessed_letters:
                 self.well_played()
                 break 
+
 
     def game_over(self):
         print("game over")
