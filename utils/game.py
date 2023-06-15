@@ -41,12 +41,11 @@ class Hangman:
             self.turn_count+=1  
 
             if letter in self.word_to_find:
-                for letter in range(len(self.word_to_find)):
-                    if self.word_to_find ==letter:
-                        self.correctly_guessed_letters = letter
+                for i in range(len(self.word_to_find)):
+                    if self.word_to_find[i] ==letter:
+                        self.correctly_guessed_letters[i] = letter
 
             else:
-                print("nope, guess again")
                 self.wrongly_guessed_letters.append(letter) #adds the wrongly guessed letter to the list
                 self.error_count+=1 # starts counting how many errors you got
                 self.lives -=1
@@ -71,7 +70,7 @@ class Hangman:
                 break 
 
             # if the player guessed all the letters correctly then well_played method is called
-            if self.word_to_find== self.correctly_guessed_letters:
+            if self.word_to_find ==self.correctly_guessed_letters:
                 self.well_played()
                 break 
 
