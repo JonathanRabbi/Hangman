@@ -68,22 +68,6 @@ class Hangman:
 
                 break
 
-
-
-
-            #not done yet with the play method
-        
-    
-
-
-
-    def game_over(self):
-        print("game over")
-    
-    def well_played(self):
-        print(f"you found the word: {self.word_to_find} in {self.turn_count} and {self.error_count} errors!")
-
-
     def start_game(self):
         """
         The start game method will call the play method until the game has finished.
@@ -104,8 +88,13 @@ class Hangman:
             # if the player guessed all the letters correctly then well_played method is called
             if "_" not in self.correctly_guessed_letters:
                 self.well_played()
-                
 
 
+    def game_over(self):
+        print("game over")
+    
+    def well_played(self):
+        print(f"you found the word: {self.word_to_find} in {self.turn_count} and {self.error_count} errors!")
 
 
+    
