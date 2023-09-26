@@ -2,7 +2,7 @@ import random
 
 class Hangman:
     
-    possible_words = ['becode']
+    possible_words = ['becode','learning', 'mathematics', 'sessions']
     
     def __init__(self):
 
